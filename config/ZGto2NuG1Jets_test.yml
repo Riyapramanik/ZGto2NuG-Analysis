@@ -1,0 +1,8 @@
+ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8:
+  era: '2023'
+  files: [root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/NANOAODSIM/130X_mcRun3_2023_realistic_v14-v3/30000/08ac31e6-6ad8-4514-9f3f-2c126de03f04.root]
+  type: mc
+  generated-events: genEventSumw
+  cross-section: 5.646
+  group: others
+
