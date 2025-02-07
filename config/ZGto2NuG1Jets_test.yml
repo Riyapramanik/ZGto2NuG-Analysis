@@ -5,4 +5,4 @@ ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8:
   generated-events: genEventSumw
   cross-section: 5.646
   group: others
-
+  split: &nsplit -2
