@@ -104,37 +104,19 @@ class baseBambooTutorialModule(NanoAODModule, HistogramsModule):
     def defineObjects(self, tree, noSel, sample=None, sampleCfg=None, **kwargs):
         era = sampleCfg["era"]
         self.sorted_photon = op.sort(tree.Photon, lambda ph: -ph.pt)
-
-        # Barrel (EB) and Endcap (EE) conditions
-#        isEB = op.abs(tree.Photon.eta) < 1.4442
-#        isEE = op.AND(op.abs(tree.Photon.Photon_eta) > 1.566, op.abs(tree.Photon.Photon_eta) < 2.5)
-
-        # Common photon selection
-        photon_selection = op.AND(
-            #tree.Photon.pt > 225.
-            #           ,op.OR(isEB, isEE),  # photon is in EB or EE
- #           tree.Photon.Photon_pixelSeed == 0,  # Pixel seed veto
-            #tree.Photon.hltObjectMatch.dR < 0.3  # HLT object match within ΔR < 0.3
-  #          tree.Photon.Photon_sipsip > 0.001 #Sigmaiphiiphi
-        )
-
-        # EB-specific cuts
-        eb_cuts = op.AND(
- #           isEB,  # Apply only for EB
-            #tree.Photon.mipTot < 4.9,  # MIP total energy
-#            tree.Photon.Photon_sieie > 0.001  # σiηiη > 0.001
-        )
-
-        # Combine EB and EE conditions
-        photon_final_selection = op.AND(
-            photon_selection,
- #           op.OR(isEE, eb_cuts)
-        )
+        #Photon selection for EB
+        self.photons_EB = op.select(self.sorted_photon, lambda ph : op.AND(
+            ph.pt > 225.0,
+            op.abs(ph.eta)<1.4442,
+            ph.sieie > 0.001,
+            ph.sipip > 0.001,
+            ph.pixelSeed < 1.0,
+            ph.etaWidth > 0.01))
+        #photon selection for EE
+        self.photons_EE = op.select(self.sorted_photon, lambda ph : op.AND(
+            ph.pt > 225.0,
+            op.AND(op.abs(ph.eta) > 1.566, op.abs(ph.eta) < 2.5)))
         
-        # Apply selection
- #       self.photon = op.select(self.sorted_photon, photon_final_selection)
-        self.photon = op.select(self.sorted_photon)
-
         return
 
      
@@ -157,5 +139,14 @@ class Hto4lPlotter(baseBambooTutorialModule):
         self.cfr = CutFlowReport("yields", recursive=True, printInLog=True)
         self.cfr.add(noSel, 'no sel')
         plots.append(self.cfr)
-
+        photon_pt_EB = self.photons_EB[0].pt
+        plot_photon_pT_EB = Plot.make1D(f"photon_pT_EB", photon_pt_EB, noSel, EqBin(1000, 200., 1000.), title="pT_{GeV} (GeV)",
+                        plotopts={"show-overflow": False, "log-y": True}
+        )
+        photon_pt_EE = self.photons_EE[0].pt
+        plot_photon_pT_EE = Plot.make1D(f"photon_pT_EE", photon_pt_EE, noSel, EqBin(1000, 200., 1000.), title="pT_{GeV} (GeV)",
+			plotopts={"show-overflow": False, "log-y": True}
+        )
+        plots.append(plot_photon_pT_EB)
+        plots.append(plot_photon_pT_EE)
         return plots

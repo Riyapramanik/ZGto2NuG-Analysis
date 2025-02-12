@@ -10,14 +10,16 @@ config_version: &id001
   remote_branches:
   - origin/master
   remotes: {}
-  sha1: b3fc7aa
+  sha1: 4a8a098
   tag: ''
   tag_remotes: []
   untracked_files:
-  - '#ZGto2NuG1Jets.py#'
-  - .#ZGto2NuG1Jets.py
-  - ZGtoNuNu/2023/results/ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8.root
-  - ZGtoNuNu/2023/yields_2023.tex
-  version: b3fc7aa-dirty
+  - ZGtoNuNu/2023/plots.yml
+  - ZGtoNuNu/2023/plots_2023/out.log
+  - ZGtoNuNu/2023/plots_2023/photon_pT_EB_logy.pdf
+  - ZGtoNuNu/2023/plots_2023/photon_pT_EB_logy.png
+  - ZGtoNuNu/2023/plots_2023/photon_pT_EE_logy.pdf
+  - ZGtoNuNu/2023/plots_2023/photon_pT_EE_logy.png
+  version: 4a8a098-dirty
 module_version: *id001
 overwritten: true

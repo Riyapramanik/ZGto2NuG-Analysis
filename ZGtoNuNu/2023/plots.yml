@@ -1,0 +1,109 @@
+configuration:
+  eras:
+  - '2023'
+  error-fill-color: '#ee556270'
+  error-fill-style: 3154
+  experiment: CMS
+  extra-label: bamboo tutorial
+  height: 800
+  luminosity:
+    '2023': 17794.0
+  luminosity-label: '%1$.2f fb^{-1} (13.6 TeV)'
+  margin-bottom: 0.15
+  margin-left: 0.2
+  margin-right: 0.03
+  margin-top: 0.05
+  ratio-fit-error-fill-color: '#aa556270'
+  ratio-fit-error-fill-style: 1001
+  ratio-fit-line-color: '#0B486B'
+  root: results
+  show-overflow: false
+  width: 800
+files:
+  ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8.root:
+    cross-section: 5.646
+    era: '2023'
+    generated-events: 838607.0579123999
+    group: others
+    type: mc
+groups:
+  ZZ:
+    fill-color: '#FF0000'
+    legend: ZZ
+    line-color: 1
+    line-style: 1
+    line-width: 1
+    order: 2
+  data:
+    legend: data
+  others:
+    fill-color: '#D3D3D3'
+    legend: others
+    line-color: 1
+    line-style: 1
+    line-width: 1
+    order: 1
+  signal:
+    legend: Signal
+legend:
+  columns: 2
+  position:
+  - 0.7
+  - 0.6
+  - 0.91
+  - 0.91
+plotdefaults:
+  legend-columns: 2
+  log-y: both
+  log-y-axis-range:
+  - 0.001
+  - 1000000000.0
+  ratio-y-axis-range:
+  - 0.6
+  - 1.4
+  save-extensions:
+  - pdf
+  - png
+  show-ratio: true
+  sort-by-yields: false
+  y-axis: Events
+  y-axis-show-zero: true
+plots:
+  photon_pT_EB:
+    legend-columns: 2
+    log-y: true
+    log-y-axis-range: &id001
+    - 0.001
+    - 1000000000.0
+    ratio-y-axis-range: &id002
+    - 0.6
+    - 1.4
+    save-extensions: &id003
+    - pdf
+    - png
+    show-overflow: false
+    show-ratio: true
+    sort-by-yields: false
+    x-axis: pT_{GeV} (GeV)
+    x-axis-range:
+    - 200.0
+    - 1000.0
+    y-axis: Events
+    y-axis-show-zero: true
+  photon_pT_EE:
+    legend-columns: 2
+    log-y: true
+    log-y-axis-range: *id001
+    ratio-y-axis-range: *id002
+    save-extensions: *id003
+    show-overflow: false
+    show-ratio: true
+    sort-by-yields: false
+    x-axis: pT_{GeV} (GeV)
+    x-axis-range:
+    - 200.0
+    - 1000.0
+    y-axis: Events
+    y-axis-show-zero: true
+systematics:
+- muID
