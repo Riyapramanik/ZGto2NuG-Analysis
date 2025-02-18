@@ -2,7 +2,34 @@ ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8:
   era: '2023'
   db: [das:/ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM]
   type: mc
-  cross-section: 5.646
+  cross-section: 0.5646
   generated-events: genEventSumw
-  group: "ZNu"
-  split: &nsplit -2
+  group: "Signal"
+  split: &nsplit - 2 
+
+ZGto2NuG-1Jets_PTG-200to400_TuneCP5_13p6TeV_amcatnloFXFX-pythia8:
+  era: '2023'
+  db: [das:/ZGto2NuG-1Jets_PTG-200to400_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23MiniAODv4-130X_mcRun3_2023_realistic_v14-v3/MINIAODSIM]
+  type: mc
+  cross-section: 0.07472
+  generated-events: genEventSumw
+  group: "Signal"
+  split: *nsplit
+
+ZGto2NuG-1Jets_PTG-400to600_TuneCP5_13p6TeV_amcatnloFXFX-pythia8:
+  era: '2023'
+  db: [das:/ZGto2NuG-1Jets_PTG-400to600_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23MiniAODv4-130X_mcRun3_2023_realistic_v14-v3/MINIAODSIM]
+  type: mc
+  cross-section: 0.005601
+  generated-events: genEventSumw
+  group: "Signal"
+  split: *nsplit
+
+ZGto2NuG-1Jets_PTG-600to_TuneCP5_13p6TeV_amcatnloFXFX-pythia8:
+  era: '2023'
+  db: [das:/ZGto2NuG-1Jets_PTG-600_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23MiniAODv4-130X_mcRun3_2023_realistic_v14-v3/MINIAODSIM]
+  type: mc
+  cross-section: 0.00161
+  generated-events: genEventSumw
+  group: "Signal"
+  split: *nsplit

@@ -18,8 +18,8 @@ output_dir='ZGtoNuNu'
 #samplesYAML='config/ZGto2NuG1Jets_test.yml'
 samplesYAML='config/ZGto2NuG1Jets.yml'
 
-run='--maxFiles=1'
-#run='--distributed=driver'
+#run='--maxFiles=1'
+run='--distributed=driver'
 #run='--onlyprepare'
 #run='--onlypost'
 #run='--distributed=finalize'
@@ -34,7 +34,7 @@ if [ "$era" != '' ]; then
 fi
 
 
-CMD="bambooRun -m ZGto2NuG1Jets.py:Hto4lPlotter config/analysis.yml --samples $samplesYAML $plus_args $run -o $output_dir"
+CMD="bambooRun -m ZGto2NuG1Jets.py:ZGto2NuGPlotter config/analysis.yml --samples $samplesYAML $plus_args $run -o $output_dir"
 echo "Running command: $CMD"
 eval $CMD
 

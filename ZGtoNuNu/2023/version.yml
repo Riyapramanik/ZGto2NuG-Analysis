@@ -1,5 +1,5 @@
 bambooRun_args:
-- --module=ZGto2NuG1Jets.py:Hto4lPlotter
+- --module=ZGto2NuG1Jets.py:ZGto2NuGPlotter
 - config/analysis.yml
 - --plotIt plotIt
 - --samples config/ZGto2NuG1Jets.yml
@@ -10,16 +10,46 @@ config_version: &id001
   remote_branches:
   - origin/master
   remotes: {}
-  sha1: 4a8a098
+  sha1: dbdef50
   tag: ''
   tag_remotes: []
   untracked_files:
-  - ZGtoNuNu/2023/plots.yml
-  - ZGtoNuNu/2023/plots_2023/out.log
-  - ZGtoNuNu/2023/plots_2023/photon_pT_EB_logy.pdf
-  - ZGtoNuNu/2023/plots_2023/photon_pT_EB_logy.png
-  - ZGtoNuNu/2023/plots_2023/photon_pT_EE_logy.pdf
-  - ZGtoNuNu/2023/plots_2023/photon_pT_EE_logy.png
-  version: 4a8a098-dirty
+  - ZGtoNuNu/2023/batch/input/condor.cmd
+  - ZGtoNuNu/2023/batch/input/condor.sh
+  - ZGtoNuNu/2023/batch/input/condor_0.sh
+  - ZGtoNuNu/2023/infiles/ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8_in_0.txt
+  - ZGtoNuNu/2023/plots_2023/EB_MET.pdf
+  - ZGtoNuNu/2023/plots_2023/EB_MET.png
+  - ZGtoNuNu/2023/plots_2023/EB_MET_logy.pdf
+  - ZGtoNuNu/2023/plots_2023/EB_MET_logy.png
+  - ZGtoNuNu/2023/plots_2023/EB_Pt.pdf
+  - ZGtoNuNu/2023/plots_2023/EB_Pt.png
+  - ZGtoNuNu/2023/plots_2023/EB_Pt_logy.pdf
+  - ZGtoNuNu/2023/plots_2023/EB_Pt_logy.png
+  - ZGtoNuNu/2023/plots_2023/EB_eta.pdf
+  - ZGtoNuNu/2023/plots_2023/EB_eta.png
+  - ZGtoNuNu/2023/plots_2023/EB_eta_logy.pdf
+  - ZGtoNuNu/2023/plots_2023/EB_eta_logy.png
+  - ZGtoNuNu/2023/plots_2023/EB_phi.pdf
+  - ZGtoNuNu/2023/plots_2023/EB_phi.png
+  - ZGtoNuNu/2023/plots_2023/EB_phi_logy.pdf
+  - ZGtoNuNu/2023/plots_2023/EB_phi_logy.png
+  - ZGtoNuNu/2023/plots_2023/EE_MET.pdf
+  - ZGtoNuNu/2023/plots_2023/EE_MET.png
+  - ZGtoNuNu/2023/plots_2023/EE_MET_logy.pdf
+  - ZGtoNuNu/2023/plots_2023/EE_MET_logy.png
+  - ZGtoNuNu/2023/plots_2023/EE_Pt.pdf
+  - ZGtoNuNu/2023/plots_2023/EE_Pt.png
+  - ZGtoNuNu/2023/plots_2023/EE_Pt_logy.pdf
+  - ZGtoNuNu/2023/plots_2023/EE_Pt_logy.png
+  - ZGtoNuNu/2023/plots_2023/EE_eta.pdf
+  - ZGtoNuNu/2023/plots_2023/EE_eta.png
+  - ZGtoNuNu/2023/plots_2023/EE_eta_logy.pdf
+  - ZGtoNuNu/2023/plots_2023/EE_eta_logy.png
+  - ZGtoNuNu/2023/plots_2023/EE_phi.pdf
+  - ZGtoNuNu/2023/plots_2023/EE_phi.png
+  - ZGtoNuNu/2023/plots_2023/EE_phi_logy.pdf
+  - ZGtoNuNu/2023/plots_2023/EE_phi_logy.png
+  version: dbdef50-dirty
 module_version: *id001
 overwritten: true
