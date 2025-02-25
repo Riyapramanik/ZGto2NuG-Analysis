@@ -115,7 +115,7 @@ class baseBambooTutorialModule(NanoAODModule, HistogramsModule):
             ph.pixelSeed < 1.0,
             op.AND(op.abs(ph.eta) > 1.566, op.abs(ph.eta) < 2.5)))
 
-        self.met = tree.MET.sumEt
+        #self.met = tree.MET.sumEt
         
         return
 
@@ -144,20 +144,20 @@ class ZGto2NuGPlotter(baseBambooTutorialModule):
         has_photon_EE = noSel.refine('hasphotons_inEE', cut=(op.rng_len(self.photons_EE) > 0))
 
         plots.append(Plot.make1D("EB_Pt", op.map(self.photons_EB, lambda ph: ph.pt), has_photon_EB,
-                EqBin(100, 200., 1000.), title="p_{T} (GeV/c)"))
+                EqBin(100, 200., 1500.), title="p_{T} (GeV/c)"))
         plots.append(Plot.make1D("EB_eta", op.map(self.photons_EB, lambda ph: ph.eta), has_photon_EB,
-                EqBin(100, -2., 2.), title="η"))
+                EqBin(100, -2., 2.), title="eta"))
         plots.append(Plot.make1D("EB_phi", op.map(self.photons_EB, lambda ph: ph.phi), has_photon_EB,
-                EqBin(100, -3., 3.), title="φ"))
+                EqBin(100, -3., 3.), title="phi"))
 
         plots.append(Plot.make1D("EE_Pt", op.map(self.photons_EE, lambda ph: ph.pt), has_photon_EE,
-                EqBin(100, 200., 1000.), title="p_{T} (GeV/c)"))
+                EqBin(100, 200., 1500.), title="p_{T} (GeV/c)"))
         plots.append(Plot.make1D("EE_eta", op.map(self.photons_EE, lambda ph: ph.eta), has_photon_EE,
-                EqBin(100, -3.2, 3.2), title="η"))
+                EqBin(100, -3.2, 3.2), title="eta"))
         plots.append(Plot.make1D("EE_phi", op.map(self.photons_EE, lambda ph: ph.phi), has_photon_EE,
-                EqBin(100, -3., 3.), title="φ"))
+                EqBin(100, -3., 3.), title="phi"))
 
-        plots.append(Plot.make1D("EB_MET", self.met, has_photon_EB,EqBin(1000, 800., 5000.), title="MET_Et (GeV)"))
-        plots.append(Plot.make1D("EE_MET", self.met, has_photon_EE,EqBin(1000, 800., 5000.), title="MET_Et (GeV)"))
+        #plots.append(Plot.make1D("EB_MET", self.met, has_photon_EB,EqBin(1000, 800., 5000.), title="MET_Et (GeV)"))
+        #plots.append(Plot.make1D("EE_MET", self.met, has_photon_EE,EqBin(1000, 800., 5000.), title="MET_Et (GeV)"))
         return plots
 

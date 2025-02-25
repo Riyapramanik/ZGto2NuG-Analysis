@@ -1,0 +1,193 @@
+configuration:
+  eras:
+  - '2023'
+  - 2023BPix
+  error-fill-color: '#ee556270'
+  error-fill-style: 3154
+  experiment: CMS
+  extra-label: bamboo tutorial
+  height: 800
+  luminosity:
+    '2023': 17794.0
+    2023BPix: 9451.0
+  luminosity-label: '%1$.2f fb^{-1} (13.6 TeV)'
+  margin-bottom: 0.15
+  margin-left: 0.2
+  margin-right: 0.03
+  margin-top: 0.05
+  ratio-fit-error-fill-color: '#aa556270'
+  ratio-fit-error-fill-style: 1001
+  ratio-fit-line-color: '#0B486B'
+  root: results
+  show-overflow: false
+  width: 800
+files:
+  ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8.root:
+    cross-section: 5.646
+    era: '2023'
+    generated-events: 838607.0579123999
+    group: Signal
+    type: mc
+groups:
+  ZZ:
+    fill-color: '#FF0000'
+    legend: ZZ
+    line-color: 1
+    line-style: 1
+    line-width: 1
+    order: 2
+  data:
+    legend: data
+  others:
+    fill-color: '#D3D3D3'
+    legend: others
+    line-color: 1
+    line-style: 1
+    line-width: 1
+    order: 1
+  signal:
+    legend: Signal
+legend:
+  columns: 2
+  position:
+  - 0.7
+  - 0.6
+  - 0.91
+  - 0.91
+plotdefaults:
+  legend-columns: 1
+  log-y: both
+  log-y-axis-range:
+  - 0.001
+  - 1000000000.0
+  ratio-y-axis-range:
+  - 0.6
+  - 1.4
+  save-extensions:
+  - pdf
+  - png
+  show-ratio: true
+  sort-by-yields: false
+  y-axis: Events
+  y-axis-show-zero: true
+plots:
+  EB_MET:
+    legend-columns: 1
+    log-y: both
+    log-y-axis-range: &id001
+    - 0.001
+    - 1000000000.0
+    ratio-y-axis-range: &id002
+    - 0.6
+    - 1.4
+    save-extensions: &id003
+    - pdf
+    - png
+    show-ratio: true
+    sort-by-yields: false
+    x-axis: MET_Et (GeV)
+    x-axis-range:
+    - 800.0
+    - 5000.0
+    y-axis: Events
+    y-axis-show-zero: true
+  EB_Pt:
+    legend-columns: 1
+    log-y: both
+    log-y-axis-range: *id001
+    ratio-y-axis-range: *id002
+    save-extensions: *id003
+    show-ratio: true
+    sort-by-yields: false
+    x-axis: p_{T} (GeV/c)
+    x-axis-range:
+    - 200.0
+    - 1000.0
+    y-axis: Events
+    y-axis-show-zero: true
+  EB_eta:
+    legend-columns: 1
+    log-y: both
+    log-y-axis-range: *id001
+    ratio-y-axis-range: *id002
+    save-extensions: *id003
+    show-ratio: true
+    sort-by-yields: false
+    x-axis: "\u03B7"
+    x-axis-range:
+    - -2.0
+    - 2.0
+    y-axis: Events
+    y-axis-show-zero: true
+  EB_phi:
+    legend-columns: 1
+    log-y: both
+    log-y-axis-range: *id001
+    ratio-y-axis-range: *id002
+    save-extensions: *id003
+    show-ratio: true
+    sort-by-yields: false
+    x-axis: "\u03C6"
+    x-axis-range:
+    - -3.0
+    - 3.0
+    y-axis: Events
+    y-axis-show-zero: true
+  EE_MET:
+    legend-columns: 1
+    log-y: both
+    log-y-axis-range: *id001
+    ratio-y-axis-range: *id002
+    save-extensions: *id003
+    show-ratio: true
+    sort-by-yields: false
+    x-axis: MET_Et (GeV)
+    x-axis-range:
+    - 800.0
+    - 5000.0
+    y-axis: Events
+    y-axis-show-zero: true
+  EE_Pt:
+    legend-columns: 1
+    log-y: both
+    log-y-axis-range: *id001
+    ratio-y-axis-range: *id002
+    save-extensions: *id003
+    show-ratio: true
+    sort-by-yields: false
+    x-axis: p_{T} (GeV/c)
+    x-axis-range:
+    - 200.0
+    - 1000.0
+    y-axis: Events
+    y-axis-show-zero: true
+  EE_eta:
+    legend-columns: 1
+    log-y: both
+    log-y-axis-range: *id001
+    ratio-y-axis-range: *id002
+    save-extensions: *id003
+    show-ratio: true
+    sort-by-yields: false
+    x-axis: "\u03B7"
+    x-axis-range:
+    - -3.2
+    - 3.2
+    y-axis: Events
+    y-axis-show-zero: true
+  EE_phi:
+    legend-columns: 1
+    log-y: both
+    log-y-axis-range: *id001
+    ratio-y-axis-range: *id002
+    save-extensions: *id003
+    show-ratio: true
+    sort-by-yields: false
+    x-axis: "\u03C6"
+    x-axis-range:
+    - -3.0
+    - 3.0
+    y-axis: Events
+    y-axis-show-zero: true
+systematics:
+- muID

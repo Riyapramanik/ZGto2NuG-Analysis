@@ -1,0 +1,2 @@
+root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/ZGto2NuG-1Jets_PTG-200to400_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/NANOAODSIM/130X_mcRun3_2023_realistic_v14-v3/2550000/e0481868-7cf1-4eb8-9f1d-30fe91551db7.root
+root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/ZGto2NuG-1Jets_PTG-200to400_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/NANOAODSIM/130X_mcRun3_2023_realistic_v14-v3/2550000/723732c3-3478-4835-bc1c-5021270fe00e.root

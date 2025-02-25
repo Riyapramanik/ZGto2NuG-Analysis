@@ -1,0 +1,4 @@
+# das:/EGamma/CMSSW_14_2_0_pre2-140X_dataRun3_v14_STD_2023_Data_RelVal_2022D-v1/NANOAOD;;das:/EGamma/CMSSW_14_2_0_pre1-140X_dataRun3_v9_STD_2023_Data_RelVal_2022D-v1/NANOAOD;;das:/EGamma/CMSSW_15_0_0_pre2-141X_dataRun3_v5_STD_2023_Data_RelVal_2022D-v1/NANOAOD
+/eos/cms/store/relval/CMSSW_14_2_0_pre2/EGamma/NANOAOD/140X_dataRun3_v14_STD_2023_Data_RelVal_2022D-v1/2580000/fc3dc1ef-26db-496a-988d-6eca1956b82c.root
+/eos/cms/store/relval/CMSSW_14_2_0_pre1/EGamma/NANOAOD/140X_dataRun3_v9_STD_2023_Data_RelVal_2022D-v1/2580000/ecd3854c-d8de-4328-904e-35c312ebedce.root
+root://cms-xrd-global.cern.ch///store/relval/CMSSW_15_0_0_pre2/EGamma/NANOAOD/141X_dataRun3_v5_STD_2023_Data_RelVal_2022D-v1/2590000/c361eb9f-0546-4bc2-8647-e09dd84097df.root

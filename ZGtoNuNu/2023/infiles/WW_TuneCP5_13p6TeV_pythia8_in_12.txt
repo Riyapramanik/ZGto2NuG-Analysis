@@ -1,0 +1,2 @@
+root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/WW_TuneCP5_13p6TeV_pythia8/NANOAODSIM/JMENano12p5_132X_mcRun3_2023_realistic_v5-v1/70000/01e9a1c8-b0e8-4348-9e6f-bf6efc433e2d.root
+root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/WW_TuneCP5_13p6TeV_pythia8/NANOAODSIM/JMENano12p5_132X_mcRun3_2023_realistic_v5-v1/70000/6ef7e6f1-a8c2-4c7e-b1a0-309d860f84d6.root

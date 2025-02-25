@@ -1,0 +1,16 @@
+INFO:bamboo.workflow:Worker processing sample EGamma_Run2023C with module /eos/user/r/rpramani/bamboodev/myAnalysis/ZGto2NuG1Jets.py:ZGto2NuGPlotter. Inputs: ['/eos/cms/store/relval/CMSSW_14_2_0_pre2/EGamma/NANOAOD/140X_dataRun3_v14_STD_2023_Data_RelVal_2022D-v1/2580000/fc3dc1ef-26db-496a-988d-6eca1956b82c.root', '/eos/cms/store/relval/CMSSW_14_2_0_pre1/EGamma/NANOAOD/140X_dataRun3_v9_STD_2023_Data_RelVal_2022D-v1/2580000/ecd3854c-d8de-4328-904e-35c312ebedce.root'], tree: Events, output: EGamma_Run2023C.root, certifiedLumiFile=/eos/user/r/rpramani/bamboodev/myAnalysis/ZGtoNuNu/2023/Cert_Collisions2022_eraD_357538_357900_Golden.json, runRange=(357735, 357735)
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::Hash<1> is available
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::ParameterSetBlob is available
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::ProcessHistory is available
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::ProcessConfiguration is available
+TClass::Init:0: RuntimeWarning: no dictionary for class pair<edm::Hash<1>,edm::ParameterSetBlob> is available
+WARNING:bamboo.treedecorators:No branch name starting with ChsMET_ in the tree - skipping group
+WARNING:bamboo.treedecorators:No branch name starting with MET_ in the tree - skipping group
+WARNING:bamboo.treedecorators:No branch name starting with RawMET_ in the tree - skipping group
+WARNING:bamboo.treedecorators:No branch name starting with TkMET_ in the tree - skipping group
+INFO:bamboo.analysismodules:7 plots defined for EGamma_Run2023C in 0.05s, max RSS: 702.12MB
+INFO:bamboo.workflow:Start backend graph construction
+INFO:bamboo.dataframebackend:Number of uses per node type: 4 Filter, 8 Histo1D, 5 gInterpreter_Declare, 9 Define
+INFO:bamboo.workflow:Backend graph construction done in 9.45s, max RSS: 912.61MB
+INFO:bamboo.workflow:Starting to fill plots (and skims)
+INFO:bamboo.workflow:Plots finished in 9.15s, max RSS: 939.64MB. 8 histograms, 0 skims

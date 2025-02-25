@@ -1,35 +1,91 @@
+EGamma_Run2023C:
+  era: '2023'
+  type: data
+  group: data
+  db: [das:/EGamma/CMSSW_14_2_0_pre2-140X_dataRun3_v14_STD_2023_Data_RelVal_2022D-v1/NANOAOD,
+       das:/EGamma/CMSSW_14_2_0_pre1-140X_dataRun3_v9_STD_2023_Data_RelVal_2022D-v1/NANOAOD,
+       das:/EGamma/CMSSW_15_0_0_pre2-141X_dataRun3_v5_STD_2023_Data_RelVal_2022D-v1/NANOAOD]
+  run_range: &runs_23C [357735,357735]
+  certified_lumi_file: &lumi_cert_23 https://cms-service-dqmdc.web.cern.ch/CAF/certification/Collisions22/Cert_Collisions2022_eraD_357538_357900_Golden.json
+  split: &nsplit5 -2
+  
 ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8:
   era: '2023'
-  db: [das:/ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM]
+  db: das:/ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM
   type: mc
+  group: ZGto2NuG
   cross-section: 0.5646
   generated-events: genEventSumw
-  group: "Signal"
-  split: &nsplit - 2 
+  split: &nsplit -2 
 
 ZGto2NuG-1Jets_PTG-200to400_TuneCP5_13p6TeV_amcatnloFXFX-pythia8:
   era: '2023'
-  db: [das:/ZGto2NuG-1Jets_PTG-200to400_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23MiniAODv4-130X_mcRun3_2023_realistic_v14-v3/MINIAODSIM]
+  db: das:/ZGto2NuG-1Jets_PTG-200to400_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM
   type: mc
+  group: ZGto2NuG
   cross-section: 0.07472
   generated-events: genEventSumw
-  group: "Signal"
-  split: *nsplit
+  split: &nsplit1 -2
 
 ZGto2NuG-1Jets_PTG-400to600_TuneCP5_13p6TeV_amcatnloFXFX-pythia8:
   era: '2023'
-  db: [das:/ZGto2NuG-1Jets_PTG-400to600_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23MiniAODv4-130X_mcRun3_2023_realistic_v14-v3/MINIAODSIM]
+  db: das:/ZGto2NuG-1Jets_PTG-400to600_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM
   type: mc
+  group: ZGto2NuG
   cross-section: 0.005601
   generated-events: genEventSumw
-  group: "Signal"
-  split: *nsplit
+  split: &nsplit2 -2
 
 ZGto2NuG-1Jets_PTG-600to_TuneCP5_13p6TeV_amcatnloFXFX-pythia8:
   era: '2023'
-  db: [das:/ZGto2NuG-1Jets_PTG-600_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23MiniAODv4-130X_mcRun3_2023_realistic_v14-v3/MINIAODSIM]
+  db: das:/ZGto2NuG-1Jets_PTG-600_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM
   type: mc
+  group: ZGto2NuG
   cross-section: 0.00161
   generated-events: genEventSumw
-  group: "Signal"
-  split: *nsplit
+  split: &nsplit3 -2
+
+TTG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFXold-pythia8:
+  era: '2023'
+  db: das:/TTG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFXold-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
+  type: mc
+  group: TTG
+  cross-section: 0.4205
+  generated-events: genEventSumw
+  split: &nsplit6 -2
+
+TTG-1Jets_PTG-200_TuneCP5_13p6TeV_amcatnloFXFXold-pythia8:
+  era: '2023'
+  db: das:/TTG-1Jets_PTG-200_TuneCP5_13p6TeV_amcatnloFXFXold-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
+  type: mc
+  group: TTG
+  cross-section: 0.1286
+  generated-events: genEventSumw
+  split: &nsplit7 -2
+
+WW_TuneCP5_13p6TeV_pythia8:
+  era: '2023'
+  db: das:/WW_TuneCP5_13p6TeV_pythia8/Run3Summer23NanoAODv12-JMENano12p5_132X_mcRun3_2023_realistic_v5-v1/NANOAODSIM
+  type: mc
+  group: WW
+  cross-section: 80.17
+  generated-events: genEventSumw
+  split: &nsplit11 -2
+
+WZ_TuneCP5_13p6TeV_pythia8:
+  era: '2023'
+  db: das:/WZ_TuneCP5_13p6TeV_pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM
+  type: mc
+  group: WZ
+  cross-section: 29.20
+  generated-events: genEventSumw
+  split: &nsplit8 -2
+
+ZZ_TuneCP5_13p6TeV_pythia8:
+  era: '2023'
+  db: das:/ZZ_TuneCP5_13p6TeV_pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM
+  type: mc
+  group: ZZ
+  cross-section: 12.85
+  generated-events: genEventSumw
+  split: &nsplit9 -2

@@ -1,0 +1,1 @@
+root://cms-xrd-global.cern.ch///store/relval/CMSSW_15_0_0_pre2/EGamma/NANOAOD/141X_dataRun3_v5_STD_2023_Data_RelVal_2022D-v1/2590000/c361eb9f-0546-4bc2-8647-e09dd84097df.root

@@ -1,9 +1,0 @@
-ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8:
-  db: das:/ZGto2NuG-1Jets_PTG-100to200_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM
-  type: mc
-  generated-events: genEventSumw
-  cross-section: 5.646
-  group: others
-  split: &nsplit -2
-  era: '2023'
-

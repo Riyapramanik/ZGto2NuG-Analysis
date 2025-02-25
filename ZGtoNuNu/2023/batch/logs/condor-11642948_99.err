@@ -1,0 +1,12 @@
+INFO:bamboo.workflow:Worker processing sample TTG-1Jets_PTG-200_TuneCP5_13p6TeV_amcatnloFXFXold-pythia8 with module /eos/user/r/rpramani/bamboodev/myAnalysis/ZGto2NuG1Jets.py:ZGto2NuGPlotter. Inputs: ['root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/TTG-1Jets_PTG-200_TuneCP5_13p6TeV_amcatnloFXFXold-pythia8/NANOAODSIM/130X_mcRun3_2023_realistic_v15-v2/80000/b612603a-0822-4b11-955d-066f27c2d0e2.root', 'root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/TTG-1Jets_PTG-200_TuneCP5_13p6TeV_amcatnloFXFXold-pythia8/NANOAODSIM/130X_mcRun3_2023_realistic_v15-v2/80000/d6e39808-edc3-4cfd-9959-42a883bd6b14.root'], tree: Events, output: TTG-1Jets_PTG-200_TuneCP5_13p6TeV_amcatnloFXFXold-pythia8.root, certifiedLumiFile=None, runRange=None
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::Hash<1> is available
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::ProcessHistory is available
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::ProcessConfiguration is available
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::ParameterSetBlob is available
+TClass::Init:0: RuntimeWarning: no dictionary for class pair<edm::Hash<1>,edm::ParameterSetBlob> is available
+INFO:bamboo.analysismodules:7 plots defined for TTG-1Jets_PTG-200_TuneCP5_13p6TeV_amcatnloFXFXold-pythia8 in 0.06s, max RSS: 723.34MB
+INFO:bamboo.workflow:Start backend graph construction
+INFO:bamboo.dataframebackend:Number of uses per node type: 6 gInterpreter_Declare, 11 Define, 8 Histo1D, 3 Filter
+INFO:bamboo.workflow:Backend graph construction done in 12.20s, max RSS: 936.31MB
+INFO:bamboo.workflow:Starting to fill plots (and skims)
+INFO:bamboo.workflow:Plots finished in 20.96s, max RSS: 976.25MB. 8 histograms, 0 skims

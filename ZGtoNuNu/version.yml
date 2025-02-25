@@ -1,27 +1,19 @@
 bambooRun_args:
-- --module=/eos/user/r/rpramani/bamboodev/myAnalysis/ZGto2NuG1Jets.py:Hto4lPlotter
-- /eos/user/r/rpramani/bamboodev/myAnalysis/config/analysis.yml
+- --module=ZGto2NuG1Jets.py:ZGto2NuGPlotter
+- config/analysis.yml
 - --plotIt plotIt
-- --samples config/ZGto2NuG1Jets_test.yml
+- --samples config/ZGto2NuG1Jets.yml
 bamboo_version: 1.1.1.dev120+gca24568
-config_version:
-  git_common: ''
+config_version: &id001
+  git_common: /eos/user/r/rpramani/bamboodev/myAnalysis/.git
   is_dirty: true
-  remote_branches: []
+  remote_branches:
+  - origin/master
   remotes: {}
-  sha1: ''
+  sha1: ee6d100
   tag: ''
   tag_remotes: []
   untracked_files: []
-  version: unknown-dirty
-module_version:
-  git_common: ''
-  is_dirty: true
-  remote_branches: []
-  remotes: {}
-  sha1: ''
-  tag: ''
-  tag_remotes: []
-  untracked_files: []
-  version: unknown-dirty
+  version: ee6d100-dirty
+module_version: *id001
 overwritten: true

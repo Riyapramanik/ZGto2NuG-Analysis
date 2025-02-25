@@ -1,0 +1,16 @@
+INFO:bamboo.workflow:Worker processing sample WW_TuneCP5_13p6TeV_pythia8 with module /eos/user/r/rpramani/bamboodev/myAnalysis/ZGto2NuG1Jets.py:ZGto2NuGPlotter. Inputs: ['root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/WW_TuneCP5_13p6TeV_pythia8/NANOAODSIM/JMENano12p5_132X_mcRun3_2023_realistic_v5-v1/70000/5cf16b62-7533-4288-a981-b8dc96071a05.root', 'root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/WW_TuneCP5_13p6TeV_pythia8/NANOAODSIM/JMENano12p5_132X_mcRun3_2023_realistic_v5-v1/70000/1ffaeb02-dd40-44f9-9f42-471259ac81da.root'], tree: Events, output: WW_TuneCP5_13p6TeV_pythia8.root, certifiedLumiFile=None, runRange=None
+Error in <TNetXNGFile::Open>: [ERROR] Invalid redirect URL
+Traceback (most recent call last):
+  File "/afs/cern.ch/user/r/rpramani/bamboovenv105/bin/bambooRun", line 8, in <module>
+    sys.exit(main())
+  File "/afs/cern.ch/user/r/rpramani/bamboovenv105/lib/python3.9/site-packages/bamboo/scripts/bambooRun.py", line 75, in main
+    modInst.run()
+  File "/afs/cern.ch/user/r/rpramani/bamboovenv105/lib/python3.9/site-packages/bamboo/analysismodules.py", line 311, in run
+    run_worker(self)
+  File "/afs/cern.ch/user/r/rpramani/bamboovenv105/lib/python3.9/site-packages/bamboo/workflow.py", line 520, in run_worker
+    processOne(
+  File "/afs/cern.ch/user/r/rpramani/bamboovenv105/lib/python3.9/site-packages/bamboo/workflow.py", line 449, in processOne
+    backend, plotList = mod.makeBackendAndPlotList(
+  File "/afs/cern.ch/user/r/rpramani/bamboovenv105/lib/python3.9/site-packages/bamboo/analysismodules.py", line 401, in makeBackendAndPlotList
+    raise OSError(f"Could not open file {fName}")
+OSError: Could not open file root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/WW_TuneCP5_13p6TeV_pythia8/NANOAODSIM/JMENano12p5_132X_mcRun3_2023_realistic_v5-v1/70000/5cf16b62-7533-4288-a981-b8dc96071a05.root

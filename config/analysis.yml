@@ -8,7 +8,7 @@ eras:
     luminosity-error: 0.015
 dbcache: dascache
 samples:
-  !include ZGto2NuG1Jets_test.yml
+  !include ZGto2NuG1Jets.yml
 plotIt:
   configuration:
     width: 800
@@ -19,7 +19,7 @@ plotIt:
     margin-bottom: 0.15
     luminosity-label: '%1$.2f fb^{-1} (13.6 TeV)'
     experiment: CMS
-    extra-label: bamboo tutorial
+    extra-label: ZGto2NuG1Jets_Analysis
     error-fill-style: 3154
     error-fill-color: "#ee556270"
     ratio-fit-error-fill-style: 1001
@@ -32,22 +32,40 @@ plotIt:
   groups:
     data:
       legend: data
-    signal:
+      line-color: 1
+      fill-color: 2
+    ZGto2NuG:
       legend: Signal
-    ZZ:
-      legend: ZZ
-      fill-color: "#FF0000"
+      line-color: 1
+      fill-color: 4
+    TTG:
+      legend: TTG
+      fill-color: 6
       line-width: 1
       line-color: 1
       line-style: 1
       order: 2
-    others:
-      legend: others
-      fill-color: "#D3D3D3"
+    WW:
+      legend: WW
+      fill-color: 5
       line-width: 1
       line-color: 1
       line-style: 1
-      order: 1
+      order: 3
+    WZ:
+      legend: WZ
+      fill-color: 8
+      line-width: 1
+      line-color: 1
+      line-style: 1
+      order: 4
+    ZZ:
+      legend: ZZ
+      fill-color: 9
+      line-width: 1
+      line-color: 1
+      line-style: 1
+      order: 5
   plotdefaults:
     y-axis: Events
     log-y: both
@@ -57,8 +75,8 @@ plotIt:
     - png
     show-ratio: true
     ratio-y-axis-range:
-    - 0.6
-    - 1.4
+    - 2.0
+    - 2.0
     sort-by-yields: false
   systematics:
   - muID # add as many sys uncer. as you want 

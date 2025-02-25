@@ -1,0 +1,13 @@
+INFO:bamboo.workflow:Worker processing sample WZ_TuneCP5_13p6TeV_pythia8 with module /eos/user/r/rpramani/bamboodev/myAnalysis/ZGto2NuG1Jets.py:ZGto2NuGPlotter. Inputs: ['root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/WZ_TuneCP5_13p6TeV_pythia8/NANOAODSIM/130X_mcRun3_2023_realistic_v14-v2/40000/c60e5b7c-9645-4e18-87c7-ceb145d46627.root', 'root://cms-xrd-global.cern.ch///store/mc/Run3Summer23NanoAODv12/WZ_TuneCP5_13p6TeV_pythia8/NANOAODSIM/130X_mcRun3_2023_realistic_v14-v2/40000/b4d92b7f-6eaf-463c-95e6-fef5eff1e197.root'], tree: Events, output: WZ_TuneCP5_13p6TeV_pythia8.root, certifiedLumiFile=None, runRange=None
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::Hash<1> is available
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::ProcessHistory is available
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::ProcessConfiguration is available
+TClass::Init:0: RuntimeWarning: no dictionary for class edm::ParameterSetBlob is available
+TClass::Init:0: RuntimeWarning: no dictionary for class pair<edm::Hash<1>,edm::ParameterSetBlob> is available
+WARNING:bamboo.treedecorators:No branch name starting with LHE_ in the tree - skipping group
+INFO:bamboo.analysismodules:7 plots defined for WZ_TuneCP5_13p6TeV_pythia8 in 0.03s, max RSS: 708.23MB
+INFO:bamboo.workflow:Start backend graph construction
+INFO:bamboo.dataframebackend:Number of uses per node type: 6 gInterpreter_Declare, 11 Define, 8 Histo1D, 3 Filter
+INFO:bamboo.workflow:Backend graph construction done in 7.49s, max RSS: 920.93MB
+INFO:bamboo.workflow:Starting to fill plots (and skims)
+INFO:bamboo.workflow:Plots finished in 177.30s, max RSS: 965.28MB. 8 histograms, 0 skims

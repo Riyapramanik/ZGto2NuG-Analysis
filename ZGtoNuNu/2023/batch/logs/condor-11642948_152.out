@@ -1,0 +1,37 @@
+RDF event loop started to process entries
+Processed 12000 entries. Elapsed: 1.57038s, average rate: 7.64146 kHz
+Processed 24000 entries. Elapsed: 1.59122s, average rate: 15.0827 kHz
+Processed 36000 entries. Elapsed: 1.61217s, average rate: 22.3302 kHz
+Processed 48000 entries. Elapsed: 1.63296s, average rate: 29.3945 kHz
+Processed 60000 entries. Elapsed: 1.65326s, average rate: 36.292 kHz
+Processed 72000 entries. Elapsed: 1.6758s, average rate: 42.9646 kHz
+Processed 84000 entries. Elapsed: 1.69754s, average rate: 49.4834 kHz
+Processed 96000 entries. Elapsed: 1.71761s, average rate: 55.8917 kHz
+Processed 108000 entries. Elapsed: 1.7373s, average rate: 62.1655 kHz
+Processed 120000 entries. Elapsed: 1.75665s, average rate: 68.3118 kHz
+Processed 132000 entries. Elapsed: 1.77831s, average rate: 74.2279 kHz
+Processed 144000 entries. Elapsed: 1.80123s, average rate: 79.9453 kHz
+Processed 156000 entries. Elapsed: 1.82392s, average rate: 85.5299 kHz
+Processed 168000 entries. Elapsed: 1.84531s, average rate: 91.0416 kHz
+Processed 180000 entries. Elapsed: 1.86919s, average rate: 96.2985 kHz
+Processed 192000 entries. Elapsed: 1.89278s, average rate: 101.438 kHz
+Processed 204000 entries. Elapsed: 1.91599s, average rate: 106.472 kHz
+Processed 216000 entries. Elapsed: 1.93674s, average rate: 111.527 kHz
+Processed 228000 entries. Elapsed: 1.95959s, average rate: 116.351 kHz
+Processed 240000 entries. Elapsed: 1.97573s, average rate: 121.474 kHz
+Processed 252000 entries. Elapsed: 3.04115s, average rate: 82.8634 kHz
+Processed 264000 entries. Elapsed: 3.0678s, average rate: 86.0552 kHz
+Processed 276000 entries. Elapsed: 3.09671s, average rate: 89.1269 kHz
+Processed 288000 entries. Elapsed: 3.11538s, average rate: 92.4445 kHz
+Processed 300000 entries. Elapsed: 3.13162s, average rate: 95.797 kHz
+Processed 312000 entries. Elapsed: 3.14611s, average rate: 99.1702 kHz
+Processed 324000 entries. Elapsed: 3.16954s, average rate: 102.223 kHz
+Processed 336000 entries. Elapsed: 3.19206s, average rate: 105.261 kHz
+Processed 348000 entries. Elapsed: 3.21422s, average rate: 108.269 kHz
+Processed 360000 entries. Elapsed: 3.23154s, average rate: 111.402 kHz
+Processed 372000 entries. Elapsed: 3.25244s, average rate: 114.376 kHz
+Processed 384000 entries. Elapsed: 3.27248s, average rate: 117.342 kHz
+Processed 396000 entries. Elapsed: 3.29448s, average rate: 120.201 kHz
+Processed 408000 entries. Elapsed: 3.3144s, average rate: 123.099 kHz
+Processed 420000 entries. Elapsed: 3.33521s, average rate: 125.929 kHz
+Moving ZZ_TuneCP5_13p6TeV_pythia8.root to /eos/user/r/rpramani/bamboodev/myAnalysis/ZGtoNuNu/2023/batch/output/152/

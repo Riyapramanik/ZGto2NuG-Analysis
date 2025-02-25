@@ -1,0 +1,1 @@
+/eos/cms/store/mc/Run3Summer23NanoAODv12/ZZ_TuneCP5_13p6TeV_pythia8/NANOAODSIM/130X_mcRun3_2023_realistic_v14-v2/2530000/18cd2c07-3b38-47ac-b144-65da63159752.root

@@ -1,0 +1,16 @@
+RDF event loop started to process entries
+Processed 12000 entries. Elapsed: 1.21075s, average rate: 9.91119 kHz
+Processed 24000 entries. Elapsed: 1.29216s, average rate: 18.5735 kHz
+Processed 36000 entries. Elapsed: 1.35355s, average rate: 26.5967 kHz
+Processed 48000 entries. Elapsed: 1.43186s, average rate: 33.5227 kHz
+Processed 60000 entries. Elapsed: 1.53569s, average rate: 39.0704 kHz
+Processed 72000 entries. Elapsed: 1.61804s, average rate: 44.4982 kHz
+Processed 84000 entries. Elapsed: 1.71853s, average rate: 48.879 kHz
+Processed 96000 entries. Elapsed: 1.83238s, average rate: 52.391 kHz
+Processed 108000 entries. Elapsed: 1.90447s, average rate: 56.7088 kHz
+Processed 120000 entries. Elapsed: 1.99413s, average rate: 60.1767 kHz
+Processed 132000 entries. Elapsed: 2.07869s, average rate: 63.5015 kHz
+Processed 144000 entries. Elapsed: 13.9231s, average rate: 10.3425 kHz
+Processed 156000 entries. Elapsed: 14.0238s, average rate: 11.1239 kHz
+Processed 168000 entries. Elapsed: 14.1066s, average rate: 11.9093 kHz
+Moving ZGto2NuG-1Jets_PTG-400to600_TuneCP5_13p6TeV_amcatnloFXFX-pythia8.root to /eos/user/r/rpramani/bamboodev/myAnalysis/ZGtoNuNu/2023/batch/output/50/

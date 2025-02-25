@@ -1,0 +1,5 @@
+RDF event loop started to process entries
+Processed 12000 entries. Elapsed: 1.41082s, average rate: 8.5057 kHz
+Processed 24000 entries. Elapsed: 1.45077s, average rate: 16.543 kHz
+Processed 36000 entries. Elapsed: 1.49004s, average rate: 24.1604 kHz
+Moving EGamma_Run2023C.root to /eos/user/r/rpramani/bamboodev/myAnalysis/ZGtoNuNu/2023/batch/output/1/
