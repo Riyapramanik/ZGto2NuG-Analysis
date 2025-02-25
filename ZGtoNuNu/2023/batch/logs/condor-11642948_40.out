@@ -1,4 +1,0 @@
-RDF event loop started to process entries
-Processed 12000 entries. Elapsed: 1.53383s, average rate: 7.82358 kHz
-Processed 24000 entries. Elapsed: 1.61561s, average rate: 14.855 kHz
-Moving ZGto2NuG-1Jets_PTG-400to600_TuneCP5_13p6TeV_amcatnloFXFX-pythia8.root to /eos/user/r/rpramani/bamboodev/myAnalysis/ZGtoNuNu/2023/batch/output/40/
