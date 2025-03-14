@@ -85,10 +85,15 @@ class baseBambooTutorialModule(NanoAODModule, HistogramsModule):
                                     ]
                     }
 
+        # Cross-section weight
+        if self.isMC(sample):
+            xsecWeight = sampleCfg["cross-section"]
+    
+        lumiWeight = lumiArgs[0]
         
         if self.isMC(sample):
-            noSel = noSel.refine("mcWeight", weight=tree.genWeight, autoSyst=self.args.systematic)
-            noSel = noSel.refine("puWeight", weight=makePUWeight(tree, era, noSel))
+            mcWeight = tree.genWeight * makePUWeight(tree, era, noSel) * lumiWeight
+            noSel = noSel.refine("mcWeight", weight=mcWeight, autoSyst=self.args.systematic)
             noSel = noSel.refine("withtriggers", cut=(op.OR(*chain.from_iterable(triggersPerPrimaryDataset.values()))))
         else:
             noSel = noSel.refine("withtriggers", cut=(makeMultiPrimaryDatasetTriggerSelection(sample, triggersPerPrimaryDataset)))
@@ -102,6 +107,11 @@ class baseBambooTutorialModule(NanoAODModule, HistogramsModule):
     def defineObjects(self, tree, noSel, sample=None, sampleCfg=None, **kwargs):
         era = sampleCfg["era"]
         self.sorted_photon = op.sort(tree.Photon, lambda ph: -ph.pt)
+
+        hlt_photons = op.select(tree.TrigObj, lambda trig: trig.id == 22)
+        def hlt_match(ph):
+            return op.rng_any(hlt_photons, lambda trig: op.deltaR(trig.p4, ph.p4) < 0.3)
+        
         #Photon selection for EB
         self.photons_EB = op.select(self.sorted_photon, lambda ph : op.AND(
             ph.pt > 225.0,
@@ -110,17 +120,48 @@ class baseBambooTutorialModule(NanoAODModule, HistogramsModule):
             ph.sipip > 0.001,
             ph.pixelSeed < 1.0,
             ph.etaWidth > 0.01,
-            ph.cutBased >= 2.0))
+            ph.cutBased >= 2.0,
+            hlt_match(ph)))
+        
         #photon selection for EE
         self.photons_EE = op.select(self.sorted_photon, lambda ph : op.AND(
             ph.pt > 225.0,
             ph.pixelSeed < 1.0,
             op.AND(op.abs(ph.eta) > 1.566, op.abs(ph.eta) < 2.5),
-            ph.cutBased >= 2.0))
+            ph.cutBased >= 2.0,
+            hlt_match(ph)))
 
-        #self.met = tree.MET.sumEt
+        #MET cut
+        self.selected_MET = tree.MET
+        self.met_cut = self.selected_MET.sumEt > 200
+
+        #Jet veto
+        self.selected_jets = op.select(tree.Jet, lambda jet: op.AND(
+            jet.pt > 30.0,             # Jet pT > 30 GeV
+            op.abs(jet.eta) < 5.0,     # |η| < 5
+            jet.jetId >= 2,            # Tight ID
+            #jet.puId > 0
+            op.NOT(op.rng_any(self.sorted_photon, lambda ph: op.deltaR(jet.p4, ph.p4) < 0.5))  # ΔR(γ, jet) > 0.5
+        ))
+        self.jet_veto = op.rng_len(self.selected_jets) == 0  # No jets passing selection
+        
+        #selection photon with met and jet veto
+        self.photons_EB_met = op.select(self.photons_EB, lambda ph: op.AND(
+            self.met_cut,                                # MET > 200 GeV
+            ph.pt / self.selected_MET.pt < 1.4,         # Photon pT / MET < 1.4
+            op.abs(self.selected_MET.phi - ph.phi) > 2,  # Δφ(MET, γ) > 2
+            self.jet_veto
+        ))
+        self.photons_EE_met = op.select(self.photons_EE, lambda ph: op.AND(
+            self.met_cut,
+            ph.pt / self.selected_MET.pt < 1.4,
+            op.abs(self.selected_MET.phi - ph.phi) > 2,
+            self.jet_veto
+        ))
+
+        
         #Jet selection         
-        self.muons = op.select(tree.Muon, lambda mu: op.AND(mu.pt > 30., op.abs(mu.eta) < 2.4))
+        '''self.muons = op.select(tree.Muon, lambda mu: op.AND(mu.pt > 30., op.abs(mu.eta) < 2.4))
         self.electrons = op.select(tree.Electron, lambda el: op.AND(el.pt > 30, op.abs(el.eta) < 2.5))
 
         self.jets_noclean = op.select(tree.Jet, lambda j: op.AND(op.abs(j.eta) < 5.0, j.pt > 30.))
@@ -141,7 +182,7 @@ class baseBambooTutorialModule(NanoAODModule, HistogramsModule):
             op.rng_len(self.jets_photon) == 0, 
             op.rng_len(self.jets_lepton) == 0, 
             op.rng_len(self.jets_met) == 0
-        )
+        )'''
 
         return
 
@@ -166,33 +207,33 @@ class ZGto2NuGPlotter(baseBambooTutorialModule):
         plots.append(self.cfr)
         
         if self.isMC(sample):
-            weight = noSel.weight  # Use weight for MC
+            weightsel = noSel.weight  # Use weight for MC
         else:
-            weight = None  # No weight for data
+            weightsel = None  # No weight for data
 
         #Apply cuts for selection  
-        has_photon_EB = noSel.refine('hasphotons_inEB', cut=(op.rng_len(self.photons_EB) > 0))
-        has_photon_EE = noSel.refine('hasphotons_inEE', cut=(op.rng_len(self.photons_EE) > 0))
-        noJetSel = noSel.refine('noJets', cut=(op.rng_len(self.jets_noclean) == 0))
+        has_photon_EB = noSel.refine('hasphotons_inEB', cut=(op.rng_len(self.photons_EB_met) == 1))
+        has_photon_EE = noSel.refine('hasphotons_inEE', cut=(op.rng_len(self.photons_EE_met) == 1))
+        #noJetSel = noSel.refine('noJets', cut=(op.rng_len(self.jets_noclean) == 0))
 
-        plots.append(Plot.make1D("EB_Pt", op.map(self.photons_EB, lambda ph: ph.pt), has_photon_EB,
-                                 EqBin(200, 200., 1500.), weight=weight, title="p_{T} (GeV/c)", autoSyst=False))
-        plots.append(Plot.make1D("EB_eta", op.map(self.photons_EB, lambda ph: ph.eta), has_photon_EB,
-                                 EqBin(100, -2., 2.), weight=weight, title="eta", autoSyst=False))
-        plots.append(Plot.make1D("EB_phi", op.map(self.photons_EB, lambda ph: ph.phi), has_photon_EB,
-                                 EqBin(80, -3., 3.), weight=weight, title="phi", autoSyst=False))
+        plots.append(Plot.make1D("EB_Pt", op.map(self.photons_EB_met, lambda ph: ph.pt), has_photon_EB,
+                                 EqBin(200, 200., 1500.), weight=weightsel, title="p_{T} (GeV/c)", autoSyst=False))
+        plots.append(Plot.make1D("EB_eta", op.map(self.photons_EB_met, lambda ph: ph.eta), has_photon_EB,
+                                 EqBin(100, -2., 2.), weight=weightsel, title="eta", autoSyst=False))
+        plots.append(Plot.make1D("EB_phi", op.map(self.photons_EB_met, lambda ph: ph.phi), has_photon_EB,
+                                 EqBin(80, -3., 3.), weight=weightsel, title="phi", autoSyst=False))
 
-        plots.append(Plot.make1D("EE_Pt", op.map(self.photons_EE, lambda ph: ph.pt), has_photon_EE,
-                                 EqBin(100, 200., 1500.), weight=weight, title="p_{T} (GeV/c)", autoSyst=False))
-        plots.append(Plot.make1D("EE_eta", op.map(self.photons_EE, lambda ph: ph.eta), has_photon_EE,
-                                 EqBin(100, -3.2, 3.2), weight=weight, title="eta", autoSyst=False))
-        plots.append(Plot.make1D("EE_phi", op.map(self.photons_EE, lambda ph: ph.phi), has_photon_EE,
-                                 EqBin(100, -3., 3.), weight=weight, title="phi", autoSyst=False))
+        plots.append(Plot.make1D("EE_Pt", op.map(self.photons_EE_met, lambda ph: ph.pt), has_photon_EE,
+                                 EqBin(100, 200., 1500.), weight=weightsel, title="p_{T} (GeV/c)", autoSyst=False))
+        plots.append(Plot.make1D("EE_eta", op.map(self.photons_EE_met, lambda ph: ph.eta), has_photon_EE,
+                                 EqBin(100, -3.2, 3.2), weight=weightsel, title="eta", autoSyst=False))
+        plots.append(Plot.make1D("EE_phi", op.map(self.photons_EE_met, lambda ph: ph.phi), has_photon_EE,
+                                 EqBin(100, -3., 3.), weight=weightsel, title="phi", autoSyst=False))
 
         #plots.append(Plot.make1D("EB_MET", self.met, has_photon_EB,EqBin(1000, 800., 5000.), title="MET_Et (GeV)"))
         #plots.append(Plot.make1D("EE_MET", self.met, has_photon_EE,EqBin(1000, 800., 5000.), title="MET_Et (GeV)"))
+        #plots.append(Plot.make1D("noJets", op.rng_len(self.jets_noclean), noJetSel, EqBin(10, 0., 10.), title="Number of jets"))
 
-        plots.append(Plot.make1D("noJets", op.rng_len(self.jets_noclean), noJetSel, EqBin(10, 0., 10.), title="Number of jets"))
         return plots
     
 class ZGto2NuGSkimmer(baseBambooTutorialModule, SkimmerModule):
@@ -238,6 +279,3 @@ class ZGto2NuGSkimmer(baseBambooTutorialModule, SkimmerModule):
         self.addSkim("photon_EB_skim", has_photon_EB, skimVars_EB)
         self.addSkim("photon_EE_skim", has_photon_EE, skimVars_EE)
         self.addSkim("noJet_skim", noJetSel, skimVars_EB)  # Use EB sk
-
-        
-        
