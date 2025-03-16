@@ -3,9 +3,6 @@ eras:
   '2023':
     luminosity: 17794.0
     luminosity-error: 0.015
-  2023BPix:
-    luminosity: 9451.0
-    luminosity-error: 0.015
 dbcache: dascache
 samples:
   !include ZGto2NuG1Jets.yml
@@ -35,37 +32,44 @@ plotIt:
       line-color: 1
       fill-color: 2
     ZGto2NuG:
-      legend: Signal
+      legend: ZG
       line-color: 1
       fill-color: 4
+    WG:
+      legend: WG
+      fill-color: 2
+      line-width: 1
+      line-color: 1
+      line-style: 1
+      order: 2  
     TTG:
       legend: TTG
       fill-color: 6
       line-width: 1
       line-color: 1
       line-style: 1
-      order: 2
+      order: 3
     WW:
       legend: WW
       fill-color: 5
       line-width: 1
       line-color: 1
       line-style: 1
-      order: 3
+      order: 4
     WZ:
       legend: WZ
       fill-color: 8
       line-width: 1
       line-color: 1
       line-style: 1
-      order: 4
+      order: 5
     ZZ:
       legend: ZZ
       fill-color: 9
       line-width: 1
       line-color: 1
       line-style: 1
-      order: 5
+      order: 6
   plotdefaults:
     y-axis: Events
     log-y: both
