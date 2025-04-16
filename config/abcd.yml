@@ -1,0 +1,55 @@
+EGamma_Run2023C:
+  era: '2023'
+  type: data
+  group: data
+  db: [das:/EGamma0/Run2023C-22Sep2023_v1-v1/NANOAOD,
+       das:/EGamma0/Run2023C-22Sep2023_v2-v1/NANOAOD,
+       das:/EGamma0/Run2023C-22Sep2023_v3-v1/NANOAOD,
+       das:/EGamma0/Run2023C-22Sep2023_v4-v1/NANOAOD,
+       das:/EGamma1/Run2023C-22Sep2023_v1-v1/NANOAOD,
+       das:/EGamma1/Run2023C-22Sep2023_v2-v1/NANOAOD,
+       das:/EGamma1/Run2023C-22Sep2023_v3-v1/NANOAOD,
+       das:/EGamma1/Run2023C-22Sep2023_v4-v1/NANOAOD]
+  run_range: &runs_23C [367094,368823]
+  certified_lumi_file: &lumi_cert_23C https://cms-service-dqmdc.web.cern.ch/CAF/certification/Collisions23/Cert_Collisions2023_eraC_367095_368823_Golden.json
+  split: &nsplit -2
+  
+GJ_Bin-PTG-100to200_TuneCP5_13p6TeV_amcatnlo-pythia8:
+  era: '2023'
+  db: das:/GJ_Bin-PTG-100to200_TuneCP5_13p6TeV_amcatnlo-pythia8/RunIII2024Summer24NanoAOD-140X_mcRun3_2024_realistic_v26-v2/NANOAODSIM
+  type: mc
+  group: GJ
+  cross-section: 1385 
+  generated-events: genEventSumw
+  split: *nsplit
+
+GJ_PTG-200to400_TuneCP5_13p6TeV_amcatnlo-pythia8:
+  era: '2023'
+  db: das:/GJ_PTG-200to400_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM
+  type: mc
+  group: GJ
+  cross-section: 88.56
+  generated-events: genEventSumw
+  split: *nsplit
+
+GJ_PTG-400to600_TuneCP5_13p6TeV_amcatnlo-pythia8:
+  era: '2023'
+  db: das:/GJ_PTG-400to600_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM
+  type: mc
+  group: GJ
+  cross-section: 3.809
+  generated-events: genEventSumw
+  split: *nsplit
+
+GJ_PTG-600_TuneCP5_13p6TeV_amcatnlo-pythia8:
+  era: '2023'
+  db: das:/GJ_PTG-600_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM
+  type: mc
+  group: GJ
+  cross-section: 0.5784
+  generated-events: genEventSumw
+  split: *nsplit
+
+
+
+
