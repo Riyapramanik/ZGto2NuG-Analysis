@@ -3,7 +3,6 @@
 """
 import os
 import logging
-
 logger = logging.getLogger("Bamboo tutorial")
 
 from functools import partial
@@ -57,7 +56,7 @@ class baseBambooTutorialModule(NanoAODModule, HistogramsModule):
             "y-axis": "Events",
             "log-y": "both",
             "y-axis-show-zero": True,
-            "log-y-axis-range": [10e-4, 10e8],
+            "log-y-axis-range": [10e-4, 10e5],
             "save-extensions": ["pdf", "png"],
             "show-ratio": True,
             "sort-by-yields": False,
@@ -136,7 +135,7 @@ class baseBambooTutorialModule(NanoAODModule, HistogramsModule):
 
         #MET cut
         self.selected_MET = tree.PuppiMET
-        self.met_cut = self.selected_MET.sumEt > 200
+        self.met_cut = self.selected_MET.pt > 200
 
         #Jet veto
         self.selected_jets = op.select(tree.Jet, lambda jet: op.AND(
@@ -162,6 +161,71 @@ class baseBambooTutorialModule(NanoAODModule, HistogramsModule):
             op.abs(self.selected_MET.phi - ph.phi) > 2,
             self.jet_veto
         ))
+
+        # ABCD method
+        # Choosing region C(Signal region)
+        #Phase space cuts + photon ID cuts
+        self.photons_EB_fullID = op.select(self.photons_EB, lambda ph : op.AND(
+            ph.trkSumPtHollowConeDR03 < 4.98616, 
+            ph.ecalPFClusterIso < 6.88295,
+            ph.hcalPFClusterIso < 14.9892,   
+            ph.hoe < 0.023136
+        ))
+        # Choosing region C(Signal region)
+        self.photons_EB_C = op.select(self.photons_EB_fullID, lambda ph: op.AND(
+            self.met_cut,                                # MET > 200 GeV  
+            ph.pt / self.selected_MET.pt < 1.4,         # Photon pT / MET < 1.4  
+            op.abs(self.selected_MET.phi - ph.phi) > 2,  # Δφ(MET, γ) > 2 
+            self.jet_veto,
+            ph.mvaID > 0.999474 #BDT cut only for region C
+        ))
+
+
+        # Region A  full ID as region C except BDT score and MET and lepton veto
+        self.met_cut_A = self.selected_MET.pt <40
+        # muons                                                                                                                                          
+        self.muons = op.select(tree.Muon, lambda mu: op.AND(        
+            mu.pt > 30.0,                                                                                      
+            op.abs(mu.eta) < 2.4,                                                                               
+            op.rng_any(self.sorted_photon, lambda ph: op.deltaR(mu.p4, ph.p4) > 0.5),                                                                  
+            mu.tightId,                                                                                             
+            mu.pfRelIso03_all < 0.4                                                                                                         
+        ))                                                                                
+        #electron
+        self.electrons = op.select(tree.Electron, lambda el: op.AND(
+            el.pt > 30.0,
+            op.OR(
+                op.abs(el.eta) < 1.4442,
+                op.AND(op.abs(el.eta) > 1.566, op.abs(el.eta) < 2.5)
+            ),
+            op.rng_any(self.sorted_photon, lambda ph: op.deltaR(el.p4, ph.p4) > 0.5),
+            el.cutBased == 4
+        ))
+
+        self.lepton_veto = op.AND(
+            op.rng_len(self.muons) == 0,
+            op.rng_len(self.electrons) == 0
+        )
+        self.photons_EB_A = op.select(self.photons_EB_fullID, lambda ph: op.AND(
+            self.met_cut_A,
+            ph.pt / self.selected_MET.pt < 1.4,  # MET/pt cut
+            op.abs(self.selected_MET.phi - ph.phi) > 2,
+            self.jet_veto,
+            self.lepton_veto
+        ))
+
+        self.photons_EB_AS = op.select(self.photons_EB, lambda ph : op.AND(
+            ph.trkSumPtHollowConeDR03 > 6,  
+            ph.trkSumPtHollowConeDR03 < 10,
+            ph.ecalPFClusterIso < 6.88295,
+            ph.hcalPFClusterIso < 14.9892,
+            ph.hoe < 0.023136,
+            self.met_cut_A,
+            ph.pt / self.selected_MET.pt < 1.4,  # MET/pt cut                                       
+            op.abs(self.selected_MET.phi - ph.phi) > 2,
+            self.jet_veto,
+            self.lepton_veto
+        ))              
 
         
         '''#Control region (WGamma)
@@ -281,27 +345,37 @@ class ZGto2NuGPlotter(baseBambooTutorialModule):
         has_photon_EE = noSel.refine('hasphotons_inEE', cut=(op.rng_len(self.photons_EE_met) == 1))
         #noJetSel = noSel.refine('noJets', cut=(op.rng_len(self.jets_noclean) == 0))
 
-        plots.append(Plot.make1D("EB_Pt", op.map(self.photons_EB_met, lambda ph: ph.pt), has_photon_EB,
-                                 EqBin(200, 200., 1200.), weight=weightsel, title="p_{T} (GeV/c)", autoSyst=True))
-        plots.append(Plot.make1D("EB_eta", op.map(self.photons_EB_met, lambda ph: ph.eta), has_photon_EB,
-                                 EqBin(100, -2., 2.), weight=weightsel, title="eta", autoSyst=True))
-        plots.append(Plot.make1D("EB_phi", op.map(self.photons_EB_met, lambda ph: ph.phi), has_photon_EB,
-                                 EqBin(100, -3., 3.), weight=weightsel, title="phi", autoSyst=True))
+        #plots.append(Plot.make1D("EB_Pt", op.map(self.photons_EB_met, lambda ph: ph.pt), has_photon_EB,EqBin(200, 200., 1200.), weight=weightsel, title="p_{T} (GeV/c)", autoSyst=True))
+        #plots.append(Plot.make1D("EB_eta", op.map(self.photons_EB_met, lambda ph: ph.eta), has_photon_EB,EqBin(100, -2., 2.), weight=weightsel, title="eta", autoSyst=True))
+        #plots.append(Plot.make1D("EB_phi", op.map(self.photons_EB_met, lambda ph: ph.phi), has_photon_EB,EqBin(100, -3., 3.), weight=weightsel, title="phi", autoSyst=True))
 
-        plots.append(Plot.make1D("EE_Pt", op.map(self.photons_EE_met, lambda ph: ph.pt), has_photon_EE,
-                                 EqBin(200, 200., 1200.), weight=weightsel, title="p_{T} (GeV/c)", autoSyst=True))
-        plots.append(Plot.make1D("EE_eta", op.map(self.photons_EE_met, lambda ph: ph.eta), has_photon_EE,
-                                 EqBin(100, -3.2, 3.2), weight=weightsel, title="eta", autoSyst=True))
-        plots.append(Plot.make1D("EE_phi", op.map(self.photons_EE_met, lambda ph: ph.phi), has_photon_EE,
-                                 EqBin(100, -3., 3.), weight=weightsel, title="phi", autoSyst=True))
+        #plots.append(Plot.make1D("EE_Pt", op.map(self.photons_EE_met, lambda ph: ph.pt), has_photon_EE,EqBin(200, 200., 1200.), weight=weightsel, title="p_{T} (GeV/c)", autoSyst=True))
+        #plots.append(Plot.make1D("EE_eta", op.map(self.photons_EE_met, lambda ph: ph.eta), has_photon_EE,EqBin(100, -3.2, 3.2), weight=weightsel, title="eta", autoSyst=True))
+        #plots.append(Plot.make1D("EE_phi", op.map(self.photons_EE_met, lambda ph: ph.phi), has_photon_EE,EqBin(100, -3., 3.), weight=weightsel, title="phi", autoSyst=True))
 
-        #plots.append(Plot.make1D("EB_MET", self.met, has_photon_EB,EqBin(1000, 800., 5000.), title="MET_Et (GeV)"))
-        #plots.append(Plot.make1D("EE_MET", self.met, has_photon_EE,EqBin(1000, 800., 5000.), title="MET_Et (GeV)"))
-        #plots.append(Plot.make1D("noJets", op.rng_len(self.jets_noclean), noJetSel, EqBin(10, 0., 10.), title="Number of jets"))
+        #For ABCD method
+        sampleGroup = sampleCfg.get("group","")                                                                                                                                            
+        if sampleGroup == "data": 
+            has_photon_EB_A = noSel.refine('hasphotons_inEB_A', cut=(op.rng_len(self.photons_EB_A) == 1))
+            plots.append(Plot.make1D("BDT_EB_A_data",op.map(self.photons_EB_A, lambda ph: ph.mvaID),has_photon_EB_A,EqBin(50, -1., 1.),weight=weightsel,title="BDT Output data"))
+            
+        if sampleGroup == "GJ":
+            has_photon_EB_A_MC = noSel.refine('hasphotons_inEB_A_mc', cut=(op.rng_len(self.photons_EB_A) == 1))
+            plots.append(Plot.make1D("BDT_EB_A_MC",op.map(self.photons_EB_A, lambda ph: ph.mvaID),has_photon_EB_A_MC,EqBin(50, -1., 1.),weight=weightsel,title="BDT Output MC"))
+        
+        if sampleGroup == "data":
+            has_photon_EB_AS = noSel.refine('hasphotons_inEB_AS', cut=(op.rng_len(self.photons_EB_AS) == 1))
+            plots.append(Plot.make1D("BDT_EB_AS",op.map(self.photons_EB_AS, lambda ph: ph.mvaID),has_photon_EB_AS,EqBin(50, -1., 1.),weight=weightsel,title="BDT data sideband"))
+
+        '''plots.append(Skim("Bdt", {
+            "run": None,  # copy from input
+            "luminosityBlock": None,
+            "event": None,
+            "mvaID": op.map(self.photons_EB, lambda ph: ph.mvaID)}, has_photon_EB, keepOriginal=[Skim.KeepRegex("PV_.*"), "nOtherPV", Skim.KeepRegex("OtherPV_.*")]))'''
 
         return plots
     
-class ZGto2NuGSkimmer(baseBambooTutorialModule, SkimmerModule):
+class ZGto2NuGSkimmer(SkimmerModule,baseBambooTutorialModule):
     """ Class to create control plots, cutflow reports, and skims """
 
     def __init__(self, args):
@@ -312,35 +386,42 @@ class ZGto2NuGSkimmer(baseBambooTutorialModule, SkimmerModule):
 
         self.defineObjects(t, noSel, sample, sampleCfg)  # Define objects (photons, jets, MET, etc.)
 
-        # Apply event selections
-        has_photon_EB = noSel.refine('hasphotons_inEB', cut=(op.rng_len(self.photons_EB) > 0))
-        has_photon_EE = noSel.refine('hasphotons_inEE', cut=(op.rng_len(self.photons_EE) > 0))
-        noJetSel = noSel.refine('noJets', cut=(op.rng_len(self.jets_noclean) == 0))
+        #BDT spectrum for A in data
+        has_photon_EB_A = noSel.refine('hasphotons_inEB_A', cut=(op.rng_len(self.photons_EB_A) > 0))
+        has_photon_EB_AS = noSel.refine('hasphotons_inEB_AS', cut=(op.rng_len(self.photons_EB_AS) > 0))
+        
+        '''sampleGroup = sampleCfg.get("group","")
 
-        # Define skim variables separately for EB and EE photons
-        skimVars_EB = {
+        if sampleGroup == "data":
+            for region, photons, sel in [
+                    ("A", self.photons_EB_A, has_photon_EB_A),
+                    ("AS", self.photons_EB_AS, has_photon_EB_AS),
+            ]:
+                bdt = op.map(photons, lambda ph: ph.mvaID)
+                skimVars = {
+                    "event": t.event,
+                    "run": t.run,
+                    "lumi": t.luminosityBlock,
+                    "photon_BDT": bdt,
+                }
+                self.addSkim(f"photon_EB_{region}_skim", sel, skimVars)
+                
+        elif sampleGroup == "GJ":'''
+        bdt_mc = op.map(self.photons_EB_A, lambda ph: ph.mvaID)
+        skimVarsMC = {
             "event": t.event,
             "run": t.run,
             "lumi": t.luminosityBlock,
-            "nJets": op.rng_len(self.jets_noclean),
-            "photon_pt": op.map(self.photons_EB, lambda ph: ph.pt),
-            "photon_eta": op.map(self.photons_EB, lambda ph: ph.eta),
-            "photon_phi": op.map(self.photons_EB, lambda ph: ph.phi),
-            "met": self.met.pt,
+            "photon_BDT": bdt_mc,
         }
+        self.addSkim(
+            name = "photon_EB_A_MC_skim",
+            selection = has_photon_EB_A,
+            branches = skimVarsMC,
+            treeName = "photonEvents"  # Optional: changes TTree name
+        )
 
-        skimVars_EE = {
-            "event": t.event,
-            "run": t.run,
-            "lumi": t.luminosityBlock,
-            "nJets": op.rng_len(self.jets_noclean),
-            "photon_pt": op.map(self.photons_EE, lambda ph: ph.pt),
-            "photon_eta": op.map(self.photons_EE, lambda ph: ph.eta),
-            "photon_phi": op.map(self.photons_EE, lambda ph: ph.phi),
-            "met": self.met.pt,
-        }
 
-        # Add skims
-        self.addSkim("photon_EB_skim", has_photon_EB, skimVars_EB)
-        self.addSkim("photon_EE_skim", has_photon_EE, skimVars_EE)
-        self.addSkim("noJet_skim", noJetSel, skimVars_EB)  # Use EB sk
+
+
+                
