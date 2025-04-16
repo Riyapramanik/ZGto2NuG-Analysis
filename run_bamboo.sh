@@ -16,16 +16,17 @@ echo "X509_USER_PROXY is set to $X509_USER_PROXY"
 output_dir='ZGtoNuNu'
 
 #samplesYAML='config/ZGto2NuG1Jets_test.yml'
-samplesYAML='config/ZGto2NuG1Jets.yml'
+#samplesYAML='config/ZGto2NuG1Jets.yml'
+samplesYAML='config/abcd.yml'
 
-#run='--maxFiles=1'
-run='--distributed=driver'
+run='--maxFiles=1'
+#run='--distributed=driver'
 #run='--onlyprepare'
 #run='--onlypost'
 #run='--distributed=finalize'
 
 doSysts=false
-era='2023' # choices '2023', '2023PBix', '' the latest will do all
+era='' # choices '2023', '2023PBix', '' the latest will do all
 
 plus_args=''
 if [ "$era" != '' ]; then
@@ -33,9 +34,11 @@ if [ "$era" != '' ]; then
     plus_args=' --era='$era
 fi
 
-
-CMD="bambooRun -m ZGto2NuG1Jets.py:ZGto2NuGPlotter config/analysis.yml --samples $samplesYAML $plus_args $run -o $output_dir"
-echo "Running command: $CMD"
-eval $CMD
-
-        
+#for CLASS in ZGto2NuGSkimmer
+for CLASS in ZGto2NuGPlotter
+do
+    #CMD="bambooRun -m ZGto2NuG1Jets.py:$CLASS config/analysis.yml --samples $samplesYAML $plus_args $run -o ${output_dir}_$CLASS"
+    CMD="bambooRun -m ZGto2NuG1Jets.py:$CLASS config/analysis_abcd.yml --samples $samplesYAML $plus_args $run -o ${output_dir}_$CLASS"
+    echo "Running command: $CMD"
+    eval $CMD
+done
